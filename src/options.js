@@ -1,23 +1,12 @@
-import kebabCase from 'lodash.kebabcase'
-import camelCase from 'lodash.camelcase'
-import snakeCase from 'lodash.snakecase'
-import isString from 'lodash.isstring'
+import kebab from 'lodash.kebabcase'
+import camel from 'lodash.camelcase'
+import snake from 'lodash.snakecase'
 
-const langTransforms = {
-  kebab: kebabCase,
-  camel: camelCase,
-  snake: kebabCase
-}
+const langTransforms = { kebab, camel, snake }
+const isValidOption = opt => opt && typeof opt === 'string'
+const validTranform = opt => Object.keys(langTransforms).indexOf(opt) > -1
 
-const isValidOption = opt => {
-  return opt && isString(opt)
-}
-
-const validTranform = (opt) => {
-  return Object.keys(langTransforms).indexOf(opt) > -1
-}
-
-const checkValidOptions = (state) => {
+function checkValidOptions(state) {
   let attribute = 'data-qa'
   let format = 'kebab'
 
@@ -30,8 +19,8 @@ const checkValidOptions = (state) => {
   }
 
   return {
-    format: langTransforms[format],
-    attribute: attribute
+    attribute,
+    format: langTransforms[format]
   }
 }
 

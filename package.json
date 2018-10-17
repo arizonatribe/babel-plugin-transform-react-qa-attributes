@@ -1,14 +1,20 @@
 {
-  "name": "babel-plugin-transform-react-qa",
-  "version": "0.0.7",
+  "name": "babel-plugin-transform-react-qa-attributes",
+  "version": "0.0.8",
   "description": "Add component's name in `data-qa` attributes to React Components Edit",
-  "repository": "https://github.com/davesnx/babel-plugin-transform-react-qa-classes",
-  "author": "Tanapol Nearunchorn <tanapol.sh@gmail.com>",
+  "repository": "https://github.com/arizonatribe/babel-plugin-transform-react-qa-attributes",
+  "authors": [
+    "David Sancho <dsnxmoreno@gmail.com>",
+    "Tanapol Nearunchorn <tanapol.sh@gmail.com>"
+  ],
+  "contributors": [
+    "David Nunez <arizonatribe@gmail.com>"
+  ],
   "main": "lib/index.js",
   "scripts": {
     "clean": "rm -rf lib",
     "build": "babel src -d lib",
-    "test": "mocha --compilers js:babel-register",
+    "test": "BABEL_ENV=test jest test/index.js",
     "test:watch": "npm run test -- --watch",
     "prepublishOnly": "npm run clean && npm run build",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
@@ -16,18 +22,31 @@
     "prepush": "npm test"
   },
   "dependencies": {
-    "lodash.camelcase": "^4.3.0",
-    "lodash.isstring": "^4.0.1",
-    "lodash.kebabcase": "^4.1.1",
-    "lodash.snakecase": "^4.1.1"
+    "lodash.camelcase": "4.3.0",
+    "lodash.kebabcase": "4.1.1",
+    "lodash.snakecase": "4.1.1"
   },
   "devDependencies": {
-    "babel-cli": "6.24.1",
-    "babel-helper-plugin-test-runner": "^6.24.1",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-stage-0": "^6.16.0",
-    "mocha": "^3.1.2",
-    "babel-preset-react": "^6.24.1"
+    "@babel/cli": "7.1.2",
+    "@babel/core": "7.1.2",
+    "@babel/helper-transform-fixture-test-runner": "7.1.2",
+    "@babel/plugin-syntax-jsx": "7.0.0",
+    "@babel/preset-env": "7.1.0",
+    "@babel/preset-react": "7.0.0",
+    "@babel/register": "7.0.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "23.6.0",
+    "jest": "23.6.0"
+  },
+  "jest": {
+    "modulePathIgnorePatterns": [
+      "/test/fixtures/"
+    ],
+    "testEnvironment": "node",
+    "testRegex": "./test/.+\\.js$"
+  },
+  "resolutions": {
+    "babel-core": "7.0.0-bridge.0"
   },
   "keywords": [
     "babel",
@@ -37,12 +56,6 @@
     "qa",
     "automate test"
   ],
-  "babel": {
-    "presets": [
-      "es2015",
-      "stage-0"
-    ]
-  },
   "files": [
     "lib",
     "README.md"

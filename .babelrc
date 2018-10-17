@@ -1,0 +1,13 @@
+{
+  "presets": [
+    ["@babel/preset-env", { "useBuiltIns": "usage" }],
+    "@babel/preset-react"
+  ],
+  "env": {
+    "test": {
+      "plugins": [
+        "@babel/plugin-syntax-jsx"
+      ]
+    }
+  }
+}
